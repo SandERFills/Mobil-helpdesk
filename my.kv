@@ -1,8 +1,66 @@
 #:kivy 2.1.0
-MainWidget:
-<MainWidget>:
-    Button:
-        text:'Hi'
-<BottonMiddle>:
-    Button:
-        text:'Hi'
+ScreenManagerApp:
+    LoginScreen:
+    MenuScreen:
+    SettingsScreen:
+<LoginWidget>:
+    BoxLayout:
+        orientation:"horizontal"
+        Label:
+            text:"Enter your login->"
+            size:"40dp","40dp"
+            pos_hint:{"center_x":.1,"center_y":.5}
+        TextInput:
+            multiline:False
+            font_size:"15"
+            size_hint:.3,.2
+            pos_hint:{"center_x":.1,"center_y":.5}
+<PasswordWidget>:
+    BoxLayout:
+        orientation:"horizontal"
+        Label:
+            text:"Enter your password->"
+            size:"40dp","40dp"
+            pos_hint:{"center_x":.1,"center_y":.5}
+        TextInput:
+            multiline:False
+            font_size:"15"
+            size_hint:.3,.2
+            pos_hint:{"center_y":.5}
+            password:True
+<LoginScreen>:
+    name:"login"
+    GridLayout:
+        cols:1
+        
+        LoginWidget:
+        PasswordWidget:
+        BoxLayout:
+            Button:
+                text:"Valid" 
+                size:"20dp","20dp"
+                pos_hint: {'right': 1,'top':1} 
+                on_release:app.root.current="main"
+<MenuScreen>:
+    name:"main"
+    GridLayout:
+        cols:2
+        Label:
+            id:"log label"
+            text:"Log page"
+        Button:
+            text:"Got to Setting"
+            on_release:app.root.current="second"
+        Button:
+            text:"Try to touch me"
+            on_press: root.on_fucking_press()
+            on_release: print("ahhh")
+
+
+<SettingsScreen>:
+    name:"second"
+    GridLayout:
+        cols:2
+        Button:
+            text:"Go back"
+            on_release:app.root.current="main"
